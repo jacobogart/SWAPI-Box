@@ -1,0 +1,7 @@
+.App {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  grid-template-rows: 100%;
+  grid-template-areas: 
+    "crawl main";
+}

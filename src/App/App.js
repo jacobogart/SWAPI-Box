@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { fetchMovie, fetchPeople, fetchHomeworld, fetchSpecies } from '../apiCalls/apiCalls.js';
 import Crawl from 'react-star-wars-crawl';
+import Main from '../Main/Main.js';
 import "react-star-wars-crawl/lib/index.css";
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor() {
@@ -74,12 +75,17 @@ class App extends Component {
 
   render() {
     let { title, subTitle, text } = this.state;
+
     return (
-      <Crawl
+      <div className="App" >
+        <Crawl
         title={title}
         subTitle={subTitle}
         text={text}
-      />
+        />
+        <Main />
+      </div>
+      
     );
   }
 }
