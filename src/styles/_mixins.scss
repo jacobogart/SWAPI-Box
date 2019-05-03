@@ -1,0 +1,7 @@
+@mixin box-styles($height, $width) {
+  background-color: $green-bg;
+  border: $yellow-border;
+  height: $height;
+  width: $width;
+  color: $sw-yellow
+}
