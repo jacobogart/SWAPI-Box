@@ -95,6 +95,17 @@ describe('API Calls', () => {
       const result = await fetchHomeworld(mockPeople);
       expect(result).toEqual(mockPromiseResult)
     });
+
+    it("should return an error is the status is not OK", async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      await expect(fetchHomeworld(mockPeople)).rejects.toEqual(
+        Error("Error loading homeworld")
+      );
+    });
   });
   describe("fetchSpecies", () => {
     let mockPeople;
@@ -126,6 +137,17 @@ describe('API Calls', () => {
       let mockPromiseResult = [{ name: "Luke", species: "Human" }];
       const result = await fetchSpecies(mockPeople);
       expect(result).toEqual(mockPromiseResult);
+    });
+
+    it("should return an error is the status is not OK", async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      await expect(fetchSpecies(mockPeople)).rejects.toEqual(
+        Error("Error loading species")
+      );
     });
   });  
 });

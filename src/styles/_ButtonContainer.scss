@@ -1,0 +1,13 @@
+.ButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 500px;
+}
+
+.category-button{
+  @include box-styles(100px, 500px);
+  font-size: 60px;
+  text-transform: uppercase;
+  margin: 0 auto;
+}

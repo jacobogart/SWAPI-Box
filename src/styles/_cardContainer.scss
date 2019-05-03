@@ -1,0 +1,22 @@
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: scroll;
+}
+
+.loadingMessage {
+  margin-top: 50px;
+  p {
+    @include box-styles(70px, 300px);
+    font-size: 40px;
+    text-align: center;
+    color: $sw-yellow;
+    font-weight: 900;
+    margin: 50px auto;
+    padding-top: 20px;
+  }
+  img {
+    margin-right: 80px;
+  }
+}

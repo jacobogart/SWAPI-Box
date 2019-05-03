@@ -23,8 +23,19 @@ export const fetchPeople = () => {
 export const fetchHomeworld = (people) => {
   const homeworldPromises = people.map(person => {
     return fetch(person.homeworld)
-      .then(response => response.json())
-      .then(homeworld => Object.assign(person, {homeworld: homeworld.name, population: homeworld.population}))
+      .then(response => {
+        if (!response.ok) {
+          throw Error("Error loading homeworld");
+        } else {
+          return response.json();
+        }
+      })
+      .then(homeworld =>
+        Object.assign(person, {
+          homeworld: homeworld.name,
+          population: homeworld.population
+        })
+      );
   })
   return Promise.all(homeworldPromises)
 }
@@ -32,9 +43,15 @@ export const fetchHomeworld = (people) => {
 export const fetchSpecies = (people) => {
   const speciesPromises = people.map(person => {
     return fetch(person.species[0])
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw Error("Error loading species");
+        } else {
+          return response.json();
+        }
+      })
       .then(species => Object.assign(person, { species: species.name }));
-  })
+  });
   return Promise.all(speciesPromises);
 }
 
