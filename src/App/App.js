@@ -19,7 +19,7 @@ class App extends Component {
 
   setMovie = () => {
     let num = Math.floor(Math.random() * (6)) + 1;
-    fetchMovie(num)
+    return fetchMovie(num)
       .then(data => {
         let { title, episode_id, opening_crawl } = data;
         let numeral = this.convertEpisodeId(episode_id);
