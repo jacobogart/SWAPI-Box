@@ -17,7 +17,7 @@ class Card extends Component {
         return (
           <li key={uuidv4()}>
             <i className="fab fa-galactic-republic" />
-            Residents:
+            <b>Residents:</b>
             <ul>{this.formatResidents(data[key])}</ul>
           </li>
         );
@@ -25,7 +25,7 @@ class Card extends Component {
         return (
           <li key={uuidv4()}>
             <i className="fab fa-galactic-republic" />
-            Class:
+            <b>Class:</b>
             <ul>{data[key]}</ul>
           </li>
         );
@@ -33,7 +33,7 @@ class Card extends Component {
         return (
           <li key={uuidv4()}>
             <i className="fab fa-galactic-republic" />
-            {this.formatKey(key)}: {data[key]}
+            <b>{this.formatKey(key)}:</b> {data[key]}
           </li>
         );
       }

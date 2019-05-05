@@ -2,7 +2,8 @@ import {
   fetchMovie,
   fetchMaster,
   fetchHomeworld,
-  fetchSpecies
+  fetchSpecies,
+  fetchResidents
 } from "./apiCalls.js";
 
 describe('API Calls', () => {
@@ -107,6 +108,7 @@ describe('API Calls', () => {
       );
     });
   });
+
   describe("fetchSpecies", () => {
     let mockPeople;
     let mockSpecies;
@@ -150,4 +152,54 @@ describe('API Calls', () => {
       );
     });
   });  
+
+  describe("fetchResidents", () => {
+    let mockPlanets;
+    let mockResident;
+    beforeEach(() => {
+      mockPlanets = [
+        {
+          name: "Alderaan",
+          residents: [
+            "https://swapi.co/api/people/5/",
+          ],
+        }
+      ];
+      mockResident = { name: "Leia Organa" };
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResident)
+        });
+      });
+    });
+
+    it("should call fetch with the correct parameters for each person object", () => {
+      fetchResidents(mockPlanets);
+      expect(window.fetch).toHaveBeenCalledWith(
+        "https://swapi.co/api/people/5/"
+      );
+    });
+
+    it("should return an array of arrays of each planets updated residents", async () => {
+      let mockPromiseResult = [[{ 
+        name: "Alderaan",
+        residentNames: [ "Leia Organa"],
+        residents: [ "https://swapi.co/api/people/5/" ], 
+      }]];
+      const result = await fetchResidents(mockPlanets);
+      expect(result).toEqual(mockPromiseResult);
+    });
+
+    it("should return an error is the status is not OK", async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      await expect(fetchResidents(mockPlanets)).rejects.toEqual(
+        Error("Error loading residents")
+      );
+    });
+  });    
 });
