@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../Card/Card';
 import {
-  fetchPeople,
+  fetchMaster,
   fetchHomeworld,
   fetchSpecies
 } from "../apiCalls/apiCalls.js";
@@ -23,7 +23,7 @@ class PeopleContainer extends Component {
   }
 
   setPeople = () => {
-    fetchPeople()
+    fetchMaster('people')
       .then(data => fetchHomeworld(data.results))
       .then(people => fetchSpecies(people))
       .then(people => this.formatPerson(people))
@@ -57,7 +57,7 @@ class PeopleContainer extends Component {
       </div>
     );
     return (
-      <section className="cardContainer">
+      <section className="cardContainer peopleContainer">
         {this.state.isLoading 
           ? loadingMessage
           : peopleCards}

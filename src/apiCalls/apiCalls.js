@@ -9,14 +9,14 @@ export const fetchMovie = (num) => {
   });
 };
 
-export const fetchPeople = () => {
-  return fetch(`https://swapi.co/api/people/`)
-  .then(response => {
-    if (!response.ok) {
-      throw Error("Error loading people");
-    } else {
-      return response.json();
-    }
+export const fetchMaster = (category) => {
+  return fetch(`https://swapi.co/api/${category}/`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error loading ${category}`);
+      } else {
+        return response.json();
+      }
   });
 }
 
@@ -55,3 +55,22 @@ export const fetchSpecies = (people) => {
   return Promise.all(speciesPromises);
 }
 
+export const fetchResidents = (planets) => {
+  const allResidentsPromises = planets.map(planet => {
+    if (planet.residents.length) {
+      let residentNames = [];
+      let residentPromise = planet.residents.map(resident => {
+        return fetch(resident)
+          .then(response => response.json())
+          .then(result => {
+            residentNames.push(result.name)
+            return Object.assign(planet, { residentNames })
+          });
+      });
+      return Promise.all(residentPromise);
+    } else {
+      return planet;
+    }
+  });
+  return Promise.all(allResidentsPromises)
+};

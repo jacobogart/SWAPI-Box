@@ -3,7 +3,6 @@ import { fetchMovie } from '../apiCalls/apiCalls.js';
 import Crawl from 'react-star-wars-crawl';
 import Main from '../Main/Main.js';
 import "react-star-wars-crawl/lib/index.css";
-// import './App.scss';
 
 class App extends Component {
   constructor() {

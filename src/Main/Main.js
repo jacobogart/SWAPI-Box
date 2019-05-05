@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ButtonContainer from '../ButtonContainer/ButtonContainer';
 import PeopleContainer from '../PeopleContainer/PeopleContainer';
-// import './Main.scss';
+import PlanetsContainer from "../PlanetsContainer/PlanetsContainer";
+import VehiclesContainer from "../VehiclesContainer/VehiclesContainer";
 
 class Main extends Component {
   constructor() {
@@ -34,10 +35,10 @@ class Main extends Component {
     switch (this.state.category) {
       case "people":
         return <PeopleContainer />;
-      // case "planet":
-      //   return <PlanetContainer />;
-      // case "vehicle":
-      //   return <VehicleContainer />;
+      case "planets":
+        return <PlanetsContainer />;
+      case "vehicles":
+        return <VehiclesContainer />;
       default:
         return <h2>Error Loading Data</h2>
 
