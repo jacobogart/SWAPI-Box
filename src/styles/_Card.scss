@@ -1,6 +1,24 @@
-.Card {
+.peopleContainer {
+  .Card {
    @include box-styles(220px, 400px);
    margin: 10px auto 20px;
+  }
+}
+
+.planetContainer {
+  .Card {
+   @include box-styles(400px, 400px);
+   margin: 10px auto 20px;
+   overflow: scroll;
+  }
+}
+
+.vehiclesContainer {
+  .Card {
+   @include box-styles(260px, 400px);
+   margin: 10px auto 20px;
+   overflow: scroll;
+  }
 }
 
 li {

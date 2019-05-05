@@ -1,6 +1,6 @@
 import {
   fetchMovie,
-  fetchPeople,
+  fetchMaster,
   fetchHomeworld,
   fetchSpecies
 } from "./apiCalls.js";
@@ -38,7 +38,7 @@ describe('API Calls', () => {
       await expect(fetchMovie(1)).rejects.toEqual(Error('Error loading film text'))
     });
   });
-  describe('fetchPeople', () => {
+  describe('fetchMaster', () => {
     let mockPeopleData = [{name: 'Luke'}]
     beforeEach(() => {
       window.fetch = jest.fn().mockImplementation(() => {
@@ -50,12 +50,12 @@ describe('API Calls', () => {
     });
 
     it('should call fetch with the right parameters', () => {
-      fetchPeople();
+      fetchMaster('people');
       expect(window.fetch).toHaveBeenCalledWith(`https://swapi.co/api/people/`)
     });
 
     it('should return a response if the status is OK', async () => {
-      const result = await fetchPeople();
+      const result = await fetchMaster('people');
       expect(result).toEqual(mockPeopleData);
     });
 
@@ -65,7 +65,7 @@ describe('API Calls', () => {
           ok: false
         })
       });
-      await expect(fetchPeople()).rejects.toEqual(Error('Error loading people'))
+      await expect(fetchMaster('people')).rejects.toEqual(Error('Error loading people'))
     });
   });
   describe('fetchHomeworld', () => {

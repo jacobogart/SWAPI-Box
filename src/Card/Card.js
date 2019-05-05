@@ -12,15 +12,54 @@ class Card extends Component {
   formatData = (data) => {
     let dataKeys = Object.keys(data)
       .filter(key => key !== 'key' && key !== 'name');
-    console.log(dataKeys);
     return dataKeys.map(key => {
-      return (
-        <li key={uuidv4()}>
-          <i className="fab fa-galactic-republic" />
-          {key}: {data[key]}
-        </li>
-      );
-    })
+      if (key === 'residents'){
+        return (
+          <li key={uuidv4()}>
+            <i className="fab fa-galactic-republic" />
+            Residents:
+            <ul>{this.formatResidents(data[key])}</ul>
+          </li>
+        );
+      } else if (key === 'vehicleClass'){
+        return (
+          <li key={uuidv4()}>
+            <i className="fab fa-galactic-republic" />
+            Class:
+            <ul>{data[key]}</ul>
+          </li>
+        );
+      } else {
+        return (
+          <li key={uuidv4()}>
+            <i className="fab fa-galactic-republic" />
+            {this.formatKey(key)}: {data[key]}
+          </li>
+        );
+      }
+    });
+  }
+
+  formatKey = key => {
+    let keyLetters = key.split('');
+    keyLetters.splice(0, 1, keyLetters[0].toUpperCase());
+    return keyLetters;
+  }
+
+  formatResidents = data => {
+    return data 
+      ? data.map(resident => {
+        return (
+          <li key={uuidv4()}>
+            <i className="fab fa-galactic-republic" />
+            {resident}
+          </li>
+        );
+      })
+      : (<li key={uuidv4()}>
+            <i className="fab fa-galactic-republic" />
+            none of importance
+          </li>)
   }
 
   render() {
