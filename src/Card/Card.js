@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 const uuidv4 = require("uuid/v4");
 
 class Card extends Component {
@@ -76,3 +77,8 @@ class Card extends Component {
 }
 
 export default Card;
+
+Card.propTypes = {
+  data: PropTypes.object,
+  category:PropTypes.string
+};

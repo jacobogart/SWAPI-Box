@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
-export default function CardContainer(props) {
+export default function ButtonContainer(props) {
   return (
     <section 
       className="ButtonContainer"
@@ -11,4 +12,8 @@ export default function CardContainer(props) {
       <button className="category-button vehicles-button">vehicles</button>
     </section>
   );
+}
+
+ButtonContainer.propTypes = {
+  selectCategory: PropTypes.func
 }
