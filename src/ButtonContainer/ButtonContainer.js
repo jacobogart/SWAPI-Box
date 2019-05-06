@@ -6,9 +6,9 @@ export default function CardContainer(props) {
       className="ButtonContainer"
       onClick={event => props.selectCategory(event)}
     >
-      <button className="category-button">people</button>
-      <button className="category-button">planets</button>
-      <button className="category-button">vehicles</button>
+      <button className="category-button people-button">people</button>
+      <button className="category-button planets-button">planets</button>
+      <button className="category-button vehicles-button">vehicles</button>
     </section>
   );
 }
