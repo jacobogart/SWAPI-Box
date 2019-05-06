@@ -42,7 +42,12 @@ class PlanetsContainer extends Component {
 
   render() {
     const planetCards = this.state.planets.map(planet => (
-      <Card key={planet.key} data={planet} category="planet" />
+      <Card
+        key={planet.key}
+        data={planet}
+        category="planet"
+        addToFavorites={this.props.addToFavorites}
+      />
     ));
 
     const loadingMessage = (

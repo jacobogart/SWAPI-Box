@@ -39,13 +39,14 @@ class PeopleContainer extends Component {
   }; 
 
   render() {
-    const peopleCards = this.state.people.map(person => 
-      <Card 
+    const peopleCards = this.state.people.map(person => (
+      <Card
         key={person.key}
         data={person}
-        category='person'
+        category="person"
+        addToFavorites={this.props.addToFavorites}
       />
-    )
+    ));
 
     const loadingMessage = (
       <div className="loadingMessage">

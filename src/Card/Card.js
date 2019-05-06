@@ -67,10 +67,12 @@ class Card extends Component {
     let { data } = this.props;
     return (
       <article className="Card">
+        <i 
+          className="fas fa-heart"
+          onClick={() => this.props.addToFavorites(data)}
+        />
         <h3>{data.name}</h3>
-        <ul>
-          {this.formatData(data)}
-        </ul>
+        <ul>{this.formatData(data)}</ul>
       </article>
     );
   }

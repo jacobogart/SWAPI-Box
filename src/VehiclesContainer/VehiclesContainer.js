@@ -30,13 +30,18 @@ class VehiclesContainer extends Component {
       let vehicleClass = vehicle.class;
       return { name, model, vehicleClass, passengers, key: uuidv4() };
     });
-    console.log(formattedVehicles)
     this.setState({ vehicles: formattedVehicles, isLoading: false });
   };
 
   render() {
+    console.log(this.props);
     const vehiclesCards = this.state.vehicles.map(vehicle => (
-      <Card key={vehicle.key} data={vehicle} category="vehicle" />
+      <Card
+        key={vehicle.key}
+        data={vehicle}
+        category="vehicle"
+        addToFavorites={this.props.addToFavorites}
+      />
     ));
 
     const loadingMessage = (

@@ -21,6 +21,14 @@
   }
 }
 
+.favoritesContainer {
+  .Card {
+   @include box-styles(400px, 420px);
+   margin: 10px auto 20px;
+   overflow: scroll;
+  }
+}
+
 li {
   list-style: none;
   font-size: 24px;
@@ -35,5 +43,14 @@ h3 {
   font-size: 40px;
   text-align: center;
   margin: 25px;
+  margin-top: 0
 }
 
+.fa-heart {
+  margin: 10px;
+  font-size: 24px;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}
