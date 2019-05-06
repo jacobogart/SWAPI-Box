@@ -50,7 +50,7 @@ describe('PeopleContainer', () => {
       mockfetchMaster.mockClear();
       mockFetchHomeworld.mockClear();
       mockFetchSpecies.mockClear();
-    })
+    });
     
     it('should invoke fetchMaster when setPeople is called', () => {
       instance.setPeople();

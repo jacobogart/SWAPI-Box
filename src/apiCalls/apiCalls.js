@@ -61,7 +61,13 @@ export const fetchResidents = (planets) => {
       let residentNames = [];
       let residentPromise = planet.residents.map(resident => {
         return fetch(resident)
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw Error("Error loading residents");
+            } else {
+              return response.json();
+            }
+          })
           .then(result => {
             residentNames.push(result.name)
             return Object.assign(planet, { residentNames })
