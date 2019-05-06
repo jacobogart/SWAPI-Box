@@ -7,7 +7,7 @@
 
 .planetContainer {
   .Card {
-   @include box-styles(400px, 400px);
+   @include box-styles(400px, 420px);
    margin: 10px auto 20px;
    overflow: scroll;
   }
@@ -16,6 +16,14 @@
 .vehiclesContainer {
   .Card {
    @include box-styles(260px, 400px);
+   margin: 10px auto 20px;
+   overflow: scroll;
+  }
+}
+
+.favoritesContainer {
+  .Card {
+   @include box-styles(400px, 420px);
    margin: 10px auto 20px;
    overflow: scroll;
   }
@@ -35,5 +43,14 @@ h3 {
   font-size: 40px;
   text-align: center;
   margin: 25px;
+  margin-top: 0
 }
 
+.fa-heart {
+  margin: 10px;
+  font-size: 24px;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}

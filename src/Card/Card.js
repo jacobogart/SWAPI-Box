@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 const uuidv4 = require("uuid/v4");
 
 class Card extends Component {
@@ -66,13 +67,20 @@ class Card extends Component {
     let { data } = this.props;
     return (
       <article className="Card">
+        <i 
+          className="fas fa-heart"
+          onClick={() => this.props.addToFavorites(data)}
+        />
         <h3>{data.name}</h3>
-        <ul>
-          {this.formatData(data)}
-        </ul>
+        <ul>{this.formatData(data)}</ul>
       </article>
     );
   }
 }
 
 export default Card;
+
+Card.propTypes = {
+  data: PropTypes.object,
+  category:PropTypes.string
+};

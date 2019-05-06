@@ -3,6 +3,8 @@ import ButtonContainer from '../ButtonContainer/ButtonContainer';
 import PeopleContainer from '../PeopleContainer/PeopleContainer';
 import PlanetsContainer from "../PlanetsContainer/PlanetsContainer";
 import VehiclesContainer from "../VehiclesContainer/VehiclesContainer";
+import FavoritesContainer from "../FavoritesContainer/FavoritesContainer";
+
 
 class Main extends Component {
   constructor() {
@@ -10,8 +12,9 @@ class Main extends Component {
     this.state = {
       showButtons: true,
       showCards: false,
-      category: null
-    }
+      category: null,
+      favorites: []
+    };
   }
 
   toggleView = (event) => {
@@ -19,10 +22,9 @@ class Main extends Component {
     if (!event || showCards) {
       this.setState({
         showButtons: !showButtons,
-        showCards: !showCards
+        showCards: !showCards,
       });
     }
-    
   }
 
   selectCategory = (event) => {
@@ -31,14 +33,29 @@ class Main extends Component {
     this.setState({ category })
   }
 
+  addToFavorites = (data) => {
+    this.state.favorites.length
+      ? this.setState({ favorites: [...this.setState.favorites, data] })
+      : this.setState({ favorites: [data] });
+  }
+
   setContainer = () => {
     switch (this.state.category) {
       case "people":
-        return <PeopleContainer />;
+        return <PeopleContainer addToFavorites={this.addToFavorites} />;
       case "planets":
-        return <PlanetsContainer />;
+        return (
+          <PlanetsContainer addToFavorites={this.addToFavorites} />
+        );
       case "vehicles":
-        return <VehiclesContainer />;
+        return (
+          <VehiclesContainer addToFavorites={this.addToFavorites} />
+        );
+      case "favorites": 
+        return <FavoritesContainer 
+                  addToFavorites={this.addToFavorites}
+                  favorites={this.state.favorites}
+               />
       default:
         return <h2>Error Loading Data</h2>
 
